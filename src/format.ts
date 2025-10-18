@@ -1,4 +1,4 @@
-import { PullRequestGroup } from './group.js'
+import type { PullRequestGroup } from './group.js'
 
 export const formatDashboard = (groups: PullRequestGroup[]): string => {
   const lines: string[] = []

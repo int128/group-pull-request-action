@@ -1,5 +1,5 @@
-import * as github from '@actions/github'
-import { Endpoints } from '@octokit/types'
+import type * as github from '@actions/github'
+import type { Endpoints } from '@octokit/types'
 
 export type Octokit = ReturnType<typeof github.getOctokit>
 
