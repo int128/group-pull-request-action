@@ -1,8 +1,8 @@
 import * as core from '@actions/core'
-import { createOrUpdateIssueBody, createOrUpdateIssueComment } from './issue.js'
-import { PullRequestGroup } from './group.js'
-import { Octokit, Repository } from './types.js'
 import { formatComment, formatDashboard } from './format.js'
+import type { PullRequestGroup } from './group.js'
+import { createOrUpdateIssueBody, createOrUpdateIssueComment } from './issue.js'
+import type { Octokit, Repository } from './types.js'
 
 export const reconcile = async (octokit: Octokit, repo: Repository, groups: PullRequestGroup[]) => {
   const dashboard = formatDashboard(groups)
