@@ -1,19 +1,17 @@
 import * as core from '@actions/core'
-import * as github from '@actions/github'
+import type { Octokit } from '@octokit/action'
+import type { Context } from './github.js'
 import { computePullRequestGroups } from './group.js'
 import { reconcile } from './reconcile.js'
 
 type Inputs = {
   labelPrefix: string
-  token: string
 }
 
-export const run = async (inputs: Inputs): Promise<void> => {
-  const octokit = github.getOctokit(inputs.token)
-
+export const run = async (inputs: Inputs, octokit: Octokit, context: Context): Promise<void> => {
   const { data: pulls } = await octokit.rest.pulls.list({
-    owner: github.context.repo.owner,
-    repo: github.context.repo.repo,
+    owner: context.repo.owner,
+    repo: context.repo.repo,
     state: 'all',
     sort: 'created',
     direction: 'desc',
@@ -28,5 +26,5 @@ export const run = async (inputs: Inputs): Promise<void> => {
     core.info(`* labels(${group.labels.join()}) => ${group.pulls.map((pull) => `#${pull.number}`).join()}`)
   }
 
-  await reconcile(octokit, github.context.repo, groups)
+  await reconcile(octokit, context.repo, groups)
 }
