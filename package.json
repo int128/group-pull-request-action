@@ -10,7 +10,7 @@
     "@actions/core": "3.0.1",
     "@octokit/action": "8.0.4",
     "@octokit/plugin-retry": "8.1.1",
-    "@octokit/types": "16.0.0"
+    "@octokit/types": "18.0.0"
   },
   "devDependencies": {
     "@biomejs/biome": "2.5.11",
